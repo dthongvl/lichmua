@@ -2,12 +2,11 @@ import Event from '../types/event';
 import Range from '../types/range';
 import Segment from '../types/segment';
 
-const breakdownEventToSegment = (event: Event): Array<Segment> => {
-  const segments: Array<Segment> = [];
+const breakdownEventToSegments = (event: Event): Array<Segment> => {
   const smallestSeasons: Array<Range> = [];
 
   event.seasons.forEach((season) => {
-    if (season.endDate.getMonth() > 11) {
+    if (season.endDate.getMonth() < season.startDate.getMonth()) {
       const newEndDate = new Date(season.endDate);
       newEndDate.setMonth(11);
 
@@ -30,7 +29,14 @@ const breakdownEventToSegment = (event: Event): Array<Segment> => {
     smallestSeasons.push(season);
   });
 
-  // TODO: calculate segments
+  const segments = smallestSeasons.map((season) => {
+    console.log('wtf');
+    return {
+      event,
+      startIndex: Math.max(season.startDate.getMonth(), 0),
+      span: Math.max(season.endDate.getMonth() - season.startDate.getMonth() + 1, 1),
+    };
+  });
 
   return segments;
 };
@@ -39,7 +45,7 @@ const breakdownEventsToSegments = (events: Array<Event>): Array<Array<Segment>> 
   const segments: Array<Array<Segment>> = [];
 
   events.forEach((event) => {
-    const segmentedEvent = breakdownEventToSegment(event);
+    const segmentedEvent = breakdownEventToSegments(event);
     segments.push(segmentedEvent);
   });
 

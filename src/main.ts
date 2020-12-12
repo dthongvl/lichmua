@@ -5,4 +5,6 @@ import './index.scss';
 
 require('./init.ts');
 
-createApp(App).use(router).mount('#app');
+createApp(App)
+  .use(router)
+  .mount('#app');

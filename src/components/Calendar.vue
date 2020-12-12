@@ -1,9 +1,15 @@
 <template>
   <div>
     <CalendarHeader />
-    <CalendarGridContent
-      :levels="levels"
-    />
+    <div
+      class="relative"
+    >
+      <!-- TODO: fix z-index -->
+      <CalendarGridBackground style="z-index: -1" />
+      <CalendarGridContent
+        :levels="levels"
+      />
+    </div>
   </div>
 </template>
 
@@ -15,9 +21,9 @@ import {
   toRefs,
   onMounted, watch,
 } from 'vue';
-import dayjs from 'dayjs';
 import CalendarHeader from './CalendarHeader.vue';
 import CalendarGridContent from './CalendarGridContent.vue';
+import CalendarGridBackground from './CalendarGridBackground.vue';
 import mergeEventsByStartAndEndDate from '../services/mergeEventsByStartAndEndDate';
 import sortEventsByStartDate from '../services/sortEventsByStartDate';
 import breakdownEventsToSegments from '../services/breakdownEventsToSegments';
@@ -29,6 +35,7 @@ export default defineComponent({
   components: {
     CalendarHeader,
     CalendarGridContent,
+    CalendarGridBackground,
   },
   props: {
     events: {

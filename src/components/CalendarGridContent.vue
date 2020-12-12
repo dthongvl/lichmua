@@ -1,12 +1,13 @@
 <template>
   <div
+    class="relative"
   >
     <CalendarRow
       v-for="(level, index) in levels"
       :key="index"
       :level="level"
       :index="index"
-      class="border-b-2"
+      class="mb-2"
     />
   </div>
 </template>

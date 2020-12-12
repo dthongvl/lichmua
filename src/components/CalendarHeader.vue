@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex border-b-2 pb-2"
+    class="flex pb-2"
   >
     <div
       v-for="month in months"
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
 import range from 'lodash/range';
 import dayjs from 'dayjs';
 

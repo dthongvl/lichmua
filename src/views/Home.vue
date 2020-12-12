@@ -1,5 +1,10 @@
 <template>
   <div class="home">
+    <div
+      class="search"
+    >
+      <span>Tim kiem</span>
+    </div>
     <Calendar :events="events" />
   </div>
 </template>
@@ -15,13 +20,14 @@ export default defineComponent({
   },
   data() {
     return {
+      searchQuery: '',
       events: [
         {
           content: 'Apple',
           seasons: [
             {
-              startDate: new Date(2020, 9, 1),
-              endDate: new Date(2020, 12, 1),
+              startDate: new Date(2020, 8, 1),
+              endDate: new Date(2020, 11, 31),
             },
           ],
         },
@@ -29,12 +35,12 @@ export default defineComponent({
           content: 'Durian',
           seasons: [
             {
-              startDate: new Date(2020, 1, 1),
-              endDate: new Date(2020, 2, 1),
+              startDate: new Date(2020, 0, 1),
+              endDate: new Date(2020, 1, 28),
             },
             {
-              startDate: new Date(2020, 5, 1),
-              endDate: new Date(2020, 6, 1),
+              startDate: new Date(2020, 4, 1),
+              endDate: new Date(2020, 5, 30),
             },
           ],
         },
@@ -42,12 +48,12 @@ export default defineComponent({
           content: 'Melon',
           seasons: [
             {
-              startDate: new Date(2020, 4, 1),
-              endDate: new Date(2020, 5, 1),
+              startDate: new Date(2020, 3, 1),
+              endDate: new Date(2020, 4, 31),
             },
             {
-              startDate: new Date(2020, 11, 1),
-              endDate: new Date(2020, 12, 1),
+              startDate: new Date(2020, 10, 1),
+              endDate: new Date(2020, 11, 31),
             },
           ],
         },
@@ -55,8 +61,8 @@ export default defineComponent({
           content: 'Tangerin',
           seasons: [
             {
-              startDate: new Date(2020, 11, 1),
-              endDate: new Date(2021, 1, 1),
+              startDate: new Date(2020, 10, 1),
+              endDate: new Date(2021, 0, 31),
             },
           ],
         },

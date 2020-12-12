@@ -1,7 +1,9 @@
 <template>
   <div
-    class=""
+    class="rounded text-white flex items-center p-2"
+    :style="segmentStyle"
   >
+    {{ displayValue }}
   </div>
 </template>
 
@@ -15,6 +17,20 @@ export default defineComponent({
     segment: {
       type: Object as PropType<Segment>,
       required: true,
+    },
+  },
+  computed: {
+    displayValue(): string {
+      if (this.segment.event) {
+        return this.segment.event.content;
+      }
+      return '';
+    },
+    segmentStyle(): string {
+      // TODO: handle this better
+      const numberOfMonths = 12;
+      const per = (this.segment.span / numberOfMonths) * 100;
+      return `flex-basis: ${per}%; background-color: ${this.segment.color}`;
     },
   },
 });
