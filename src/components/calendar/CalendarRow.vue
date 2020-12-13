@@ -13,9 +13,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue';
-import Segment from '../types/segment';
+import Segment from '../../types/segment';
 import RowSegment from './RowSegment.vue';
-import getRandomColor from '../services/getRandomColor';
+import getRandomColor from '../../services/getRandomColor';
 
 export default defineComponent({
   name: 'CalendarRow',

@@ -1,11 +1,12 @@
 <template>
   <div
-    class="absolute inset-0 flex"
+    class="flex"
   >
     <div
       v-for="month in months"
       :key="month"
-      class="flex-1 border-l-2"
+      class="flex-1"
+      :class="{ 'border-l-2': month !== 1 }"
     />
   </div>
 </template>

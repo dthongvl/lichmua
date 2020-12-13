@@ -1,52 +1,53 @@
 <template>
-  <div class="home">
-    <div
-      class="search"
+  <div class="flex flex-col">
+    <Sidebar
+      v-model:collapsed="categoryCollapsed"
+      position="left"
     >
-      <div>Tim kiem</div>
-      <it-input
-        v-model="searchQuery"
-        placeholder="Cam, Quyt,.."
-        class="inline"
-      />
-    </div>
+      <div
+        v-for="event in events"
+        :key="event.content"
+      >
+        {{ event.content }}
+      </div>
+    </Sidebar>
     <div
-      class="filter"
+      class="content"
     >
-      <it-toggle
-        v-model="calendarStyle"
-        :options="['Duong lich', 'Am lich']"
-      />
-      <it-checkbox
-        v-model="thisMonthOnly"
-        type="primary"
-        label="Chi thang nay"
-      />
-      <it-checkbox
-        v-model="onlyFavorite"
-        type="primary"
-        label="Chi nhung loai yeu thich"
-      />
+      <Filter />
+      <Calendar :events="events" />
     </div>
-    <Calendar :events="events" />
+    <Sidebar
+      v-model:collapsed="categoryCollapsed"
+      position="right"
+    >
+      <div
+        v-for="event in events"
+        :key="event.content"
+      >
+        {{ event.content }}
+      </div>
+    </Sidebar>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Calendar from '../components/Calendar.vue';
+import Calendar from '../components/calendar/Calendar.vue';
+import Filter from '../components/layout/Filter.vue';
+import Sidebar from '../components/layout/Sidebar.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
     Calendar,
+    Filter,
+    Sidebar,
   },
   data() {
     return {
-      searchQuery: '',
-      calendarStyle: 'Duong lich',
-      thisMonthOnly: false,
-      onlyFavorite: false,
+      categoryCollapsed: true,
+      eventInfoCollapsed: true,
       events: [
         {
           content: 'Apple',

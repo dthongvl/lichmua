@@ -1,7 +1,9 @@
 <template>
   <div
     class="rounded text-white flex items-center p-2"
+    :class="{ 'hover:shadow-md cursor-pointer': displayValue.length }"
     :style="segmentStyle"
+    @click="openInfoSider"
   >
     {{ displayValue }}
   </div>
@@ -31,6 +33,10 @@ export default defineComponent({
       const numberOfMonths = 12;
       const per = (this.segment.span / numberOfMonths) * 100;
       return `flex-basis: ${per}%; background-color: ${this.segment.color}`;
+    },
+  },
+  methods: {
+    openInfoSider(): void {
     },
   },
 });

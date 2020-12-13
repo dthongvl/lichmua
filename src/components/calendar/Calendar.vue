@@ -5,7 +5,10 @@
       class="relative"
     >
       <!-- TODO: fix z-index -->
-      <CalendarGridBackground style="z-index: -1" />
+      <CalendarGridBackground
+        class="absolute inset-0"
+        style="z-index: -1"
+      />
       <CalendarGridContent
         :levels="levels"
       />
@@ -24,11 +27,11 @@ import {
 import CalendarHeader from './CalendarHeader.vue';
 import CalendarGridContent from './CalendarGridContent.vue';
 import CalendarGridBackground from './CalendarGridBackground.vue';
-import mergeEventsByStartAndEndDate from '../services/mergeEventsByStartAndEndDate';
-import sortEventsByStartDate from '../services/sortEventsByStartDate';
-import breakdownEventsToSegments from '../services/breakdownEventsToSegments';
-import Segment from '../types/segment';
-import Event from '../types/event';
+import mergeEventsByStartAndEndDate from '../../services/mergeEventsByStartAndEndDate';
+import sortEventsByStartDate from '../../services/sortEventsByStartDate';
+import breakdownEventsToSegments from '../../services/breakdownEventsToSegments';
+import Segment from '../../types/segment';
+import Event from '../../types/event';
 
 export default defineComponent({
   name: 'Calendar',

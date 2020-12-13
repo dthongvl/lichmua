@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="relative"
-  >
+  <div>
     <CalendarRow
       v-for="(level, index) in levels"
       :key="index"
