@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vite",
+    "build": "vite build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "dayjs": "^1.9.6",
+    "equal-vue": "^0.7.19",
     "lodash": "^4.17.20",
     "open-color": "^1.7.0",
     "vue": "^3.0.0",
@@ -40,6 +41,7 @@
     "sass-loader": "^8.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "typescript": "~3.9.3",
+    "vite": "^1.0.0-rc.13",
     "vue-jest": "^5.0.0-0"
   }
 }

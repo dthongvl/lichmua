@@ -1,5 +1,5 @@
 import oc from 'open-color';
-import sample from 'lodash/sample';
+import { sample } from 'lodash';
 
 // From Excalidraw
 const shades = (index: number) => [

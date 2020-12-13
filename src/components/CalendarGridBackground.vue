@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import range from 'lodash/range';
+import { range } from 'lodash';
 import dayjs from 'dayjs';
 
 export default defineComponent({

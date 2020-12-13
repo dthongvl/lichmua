@@ -1,5 +1,4 @@
-import groupBy from 'lodash/groupBy';
-import forEach from 'lodash/forEach';
+import { forEach, groupBy } from 'lodash';
 import Event from '../types/event';
 import Range from '../types/range';
 

@@ -3,7 +3,30 @@
     <div
       class="search"
     >
-      <span>Tim kiem</span>
+      <div>Tim kiem</div>
+      <it-input
+        v-model="searchQuery"
+        placeholder="Cam, Quyt,.."
+        class="inline"
+      />
+    </div>
+    <div
+      class="filter"
+    >
+      <it-toggle
+        v-model="calendarStyle"
+        :options="['Duong lich', 'Am lich']"
+      />
+      <it-checkbox
+        v-model="thisMonthOnly"
+        type="primary"
+        label="Chi thang nay"
+      />
+      <it-checkbox
+        v-model="onlyFavorite"
+        type="primary"
+        label="Chi nhung loai yeu thich"
+      />
     </div>
     <Calendar :events="events" />
   </div>
@@ -21,6 +44,9 @@ export default defineComponent({
   data() {
     return {
       searchQuery: '',
+      calendarStyle: 'Duong lich',
+      thisMonthOnly: false,
+      onlyFavorite: false,
       events: [
         {
           content: 'Apple',
