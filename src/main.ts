@@ -1,21 +1,23 @@
 import { createApp } from 'vue';
 import {
   Button,
-  Toggle,
+  Switch,
   Input,
+  Radio,
   Icon,
-  Checkbox,
-} from 'equal-vue';
+  Layout,
+} from 'ant-design-vue';
 import App from './App.vue';
 import router from './router';
-import 'equal-vue/dist/equal.css';
+import 'ant-design-vue/dist/antd.css';
 import './index.scss';
 
 createApp(App)
   .use(router)
-  .use(Toggle)
   .use(Input)
   .use(Icon)
   .use(Button)
-  .use(Checkbox)
+  .use(Switch)
+  .use(Radio)
+  .use(Layout)
   .mount('#app');
