@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex">
     <Sidebar
       v-model:collapsed="categoryCollapsed"
       position="left"
@@ -12,7 +12,7 @@
       </div>
     </Sidebar>
     <div
-      class="content"
+      class="w-screen"
     >
       <Filter />
       <Calendar :events="events" />
