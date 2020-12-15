@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
-      - run: yarn build
+      - run: yarn build --base=/lichmua
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
