@@ -3,7 +3,6 @@ import Event from '../types/event';
 import Range from '../types/range';
 
 const byStartDate = (firstEl: Range, secondEl: Range) => {
-  console.log();
   return firstEl.startDate.getTime() - secondEl.startDate.getTime();
 };
 

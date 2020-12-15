@@ -29,14 +29,18 @@ export default defineComponent({
       return '';
     },
     segmentStyle(): string {
-      // TODO: handle this better
       const numberOfMonths = 12;
       const per = (this.segment.span / numberOfMonths) * 100;
       return `flex-basis: ${per}%; background-color: ${this.segment.color}`;
     },
   },
   methods: {
-    openInfoSider(): void {
+    ...mapMutations(['setCurrentEvent', 'setEventInfoCollapsed']),
+    openEventInfoSidebar(): void {
+      if (!this.displayValue.length) return;
+
+      this.setCurrentEvent(this.segment.event);
+      this.setEventInfoCollapsed(false);
     },
   },
 });

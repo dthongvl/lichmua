@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapState, mapMutations } from 'vuex';
 import Calendar from '../components/calendar/Calendar.vue';
 import Filter from '../components/layout/Filter.vue';
 import Sidebar from '../components/layout/Sidebar.vue';
@@ -95,6 +96,22 @@ export default defineComponent({
         },
       ],
     };
+  },
+  beforeMount() {
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  unmounted() {
+    document.removeEventListener('click', this.handleClickOutside);
+  },
+  computed: {
+    ...mapState(['eventInfoCollapsed']),
+  },
+  methods: {
+    ...mapMutations(['setEventInfoCollapsed']),
+    handleClickOutside(event): void {
+      if (event.target.closest('.row-segment') || event.target.closest('.event-info-sidebar')) return;
+      this.setEventInfoCollapsed(true);
+    },
   },
 });
 </script>

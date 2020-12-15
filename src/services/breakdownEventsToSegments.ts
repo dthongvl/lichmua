@@ -30,7 +30,6 @@ const breakdownEventToSegments = (event: Event): Array<Segment> => {
   });
 
   const segments = smallestSeasons.map((season) => {
-    console.log('wtf');
     return {
       event,
       startIndex: Math.max(season.startDate.getMonth(), 0),
