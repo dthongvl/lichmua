@@ -1,9 +1,9 @@
 <template>
   <div
     class="rounded text-white flex items-center p-2"
-    :class="{ 'hover:shadow-md cursor-pointer': displayValue.length }"
+    :class="{ 'hover:shadow-md cursor-pointer row-segment': displayValue.length }"
     :style="segmentStyle"
-    @click="openInfoSider"
+    @click="openEventInfoSidebar"
   >
     {{ displayValue }}
   </div>
@@ -11,7 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import Segment from '../types/segment';
+import { mapMutations } from 'vuex';
+import Segment from '../../types/segment';
 
 export default defineComponent({
   name: 'RowSegment',

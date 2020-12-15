@@ -1,0 +1,80 @@
+<template>
+  <transition name="slide-left">
+    <div
+      v-show="!collapsed"
+      class="event-info-sidebar"
+    >
+      <div
+        v-if="currentEvent"
+        class="sidebar-container bg-white border-1 rounded-r-md sidebar-container shadow-md"
+      >
+        <div>
+          Name: {{ currentEvent.content }}
+        </div>
+        <template
+          v-for="(season, index) in formattedSeasons"
+          :key="index"
+        >
+          <div>
+            Ngày bắt đầu: {{ season.startDate }}
+          </div>
+          <div>
+            Ngày kết thúc: {{ season.endDate }}
+          </div>
+        </template>
+      </div>
+    </div>
+  </transition>
+</template>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { mapState } from 'vuex';
+import dayjs from 'dayjs';
+import Range from '../../types/range';
+
+export default defineComponent({
+  name: 'EventInfoSidebar',
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+    };
+  },
+  computed: {
+    ...mapState(['currentEvent']),
+    formattedSeasons(): Array<any> {
+      const formatted: Array<any> = [];
+
+      this.currentEvent.seasons.forEach((season: Range) => {
+        formatted.push({
+          startDate: dayjs(season.startDate).format('DD MMMM'),
+          endDate: dayjs(season.endDate).format('DD MMMM'),
+        });
+      });
+
+      return formatted;
+    },
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+.event-info-sidebar {
+  .sidebar-container {
+    width: 30vw;
+    height: 100vh;
+  }
+}
+
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: all .15s ease-in-out;
+}
+.slide-left-enter, .slide-left-leave-to {
+  transform: translateX(100px);
+  opacity: 0;
+}
+</style>

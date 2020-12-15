@@ -1,33 +1,23 @@
 <template>
-  <div class="flex">
-    <Sidebar
-      v-model:collapsed="categoryCollapsed"
-      position="left"
-    >
-      <div
-        v-for="event in events"
-        :key="event.content"
-      >
-        {{ event.content }}
-      </div>
-    </Sidebar>
+  <div class="flex w-screen h-screen relative">
+    <CategorySidebar
+      :events="events"
+      class="absolute inset-y-0 left-0 z-10 w-0"
+    />
+    <EventInfoSidebar
+      :collapsed="eventInfoCollapsed"
+      class="absolute inset-y-0 right-0 z-10"
+    />
     <div
-      class="w-screen"
+      class="w-full h-full flex flex-col"
     >
-      <Filter />
-      <Calendar :events="events" />
+      <Header class="mb-6 shadow-md h-16 px-5" />
+      <Filter class="mb-6 mx-5" />
+      <Calendar
+        :events="events"
+        class="flex-1"
+      />
     </div>
-    <Sidebar
-      v-model:collapsed="categoryCollapsed"
-      position="right"
-    >
-      <div
-        v-for="event in events"
-        :key="event.content"
-      >
-        {{ event.content }}
-      </div>
-    </Sidebar>
   </div>
 </template>
 
@@ -36,65 +26,24 @@ import { defineComponent } from 'vue';
 import { mapState, mapMutations } from 'vuex';
 import Calendar from '../components/calendar/Calendar.vue';
 import Filter from '../components/layout/Filter.vue';
-import Sidebar from '../components/layout/Sidebar.vue';
+import Header from '../components/layout/Header.vue';
+import CategorySidebar from '../components/layout/CategorySidebar.vue';
+import EventInfoSidebar from '../components/layout/EventInfoSidebar.vue';
+import loadEvents from '../services/loadEvents';
+import eventsData from '../data/eventsData.json';
 
 export default defineComponent({
   name: 'Home',
   components: {
     Calendar,
     Filter,
-    Sidebar,
+    Header,
+    CategorySidebar,
+    EventInfoSidebar,
   },
   data() {
     return {
-      categoryCollapsed: true,
-      eventInfoCollapsed: true,
-      events: [
-        {
-          content: 'Apple',
-          seasons: [
-            {
-              startDate: new Date(2020, 8, 1),
-              endDate: new Date(2020, 11, 31),
-            },
-          ],
-        },
-        {
-          content: 'Durian',
-          seasons: [
-            {
-              startDate: new Date(2020, 0, 1),
-              endDate: new Date(2020, 1, 28),
-            },
-            {
-              startDate: new Date(2020, 4, 1),
-              endDate: new Date(2020, 5, 30),
-            },
-          ],
-        },
-        {
-          content: 'Melon',
-          seasons: [
-            {
-              startDate: new Date(2020, 3, 1),
-              endDate: new Date(2020, 4, 31),
-            },
-            {
-              startDate: new Date(2020, 10, 1),
-              endDate: new Date(2020, 11, 31),
-            },
-          ],
-        },
-        {
-          content: 'Tangerin',
-          seasons: [
-            {
-              startDate: new Date(2020, 10, 1),
-              endDate: new Date(2021, 0, 31),
-            },
-          ],
-        },
-      ],
+      events: loadEvents(eventsData),
     };
   },
   beforeMount() {

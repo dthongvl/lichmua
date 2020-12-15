@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <CalendarHeader />
+  <div class="flex flex-col">
+    <CalendarHeader class="header-shadow border-t pt-3" />
     <div
-      class="relative"
+      class="relative flex-1"
     >
-      <!-- TODO: fix z-index -->
-      <CalendarGridBackground
-        class="absolute inset-0"
-        style="z-index: -1"
-      />
+      <CalendarGridBackground class="h-full" />
       <CalendarGridContent
         :levels="levels"
+        class="absolute inset-0 top-2 overflow-y-scroll overflow-x-hidden"
       />
     </div>
   </div>
@@ -69,3 +66,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.header-shadow {
+  --tw-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+</style>
