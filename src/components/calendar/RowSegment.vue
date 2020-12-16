@@ -30,6 +30,7 @@ export default defineComponent({
       return '';
     },
     segmentStyle(): string {
+      // TODO: also use date to calculate the percent
       const numberOfMonths = 12;
       const per = (this.segment.span / numberOfMonths) * 100;
       return `flex-basis: ${per}%; background-color: ${this.segment.color}`;

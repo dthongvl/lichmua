@@ -3,13 +3,12 @@ import {
   Button,
   Switch,
   Input,
-  Radio,
+  Toggle,
   Icon,
-  Layout,
-} from 'ant-design-vue';
+} from 'equal-vue';
+import 'equal-vue/dist/equal.css';
 import App from './App.vue';
 import router from './router';
-import 'ant-design-vue/dist/antd.css';
 import './index.scss';
 import store from './store';
 
@@ -20,6 +19,5 @@ createApp(App)
   .use(Icon)
   .use(Button)
   .use(Switch)
-  .use(Radio)
-  .use(Layout)
+  .use(Toggle)
   .mount('#app');

@@ -39,8 +39,10 @@ export default defineComponent({
     height: calc(-120px + 100vh);
     transition: transform 0.5s, opacity 0.3s;
     transform: translateX(-280px) translateY(60px) translateZ(0px);
+  }
 
-    &:hover {
+  &:hover {
+    .sidebar-container {
       transform: translateX(0px) translateY(60px) translateZ(0px);
     }
   }

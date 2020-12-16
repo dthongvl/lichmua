@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-center">
+  <div class="sm:flex justify-between items-center">
     <div>
       <img
         src="https://vuejs.org/images/logo.png"
@@ -8,11 +8,10 @@
       <span>Lich mua</span>
     </div>
     <div class="w-75">
-      <a-input-search
-        v-model:value="searchQuery"
+      <it-input
+        v-model="searchQuery"
         placeholder="Cam, Quyt,.."
-        :loading="searching"
-        @search="onSearch"
+        type="text"
       />
     </div>
   </div>

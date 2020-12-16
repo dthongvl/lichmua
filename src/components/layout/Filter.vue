@@ -1,35 +1,25 @@
 <template>
   <div
-    class="filter flex items-center justify-between"
+    class="sm:flex items-center justify-between"
   >
-    <a-radio-group
-      v-model:value="calendarStyle"
-      button-style="solid"
-    >
-      <a-radio-button
-        value="calendar"
-        class="w-32"
-      >
-        Dương lịch
-      </a-radio-button>
-      <a-radio-button
-        value="Lunar"
-        class="w-32"
-      >
-        Âm lịch
-      </a-radio-button>
-    </a-radio-group>
-    <div>
-      <a-switch
-        v-model:checked="thisMonthOnly"
-        size="small"
-      />
-      <span class="ml-1 mr-4">Chỉ trong tháng hiện tại</span>
-      <a-switch
-        v-model:checked="onlyFavorite"
-        size="small"
-      />
-      <span class="ml-1">Chỉ những loại yêu thích</span>
+    <it-toggle
+      v-model="calendarStyle"
+      :options="['Dương lịch', 'Âm lịch']"
+      class="w-72"
+    />
+    <div class="sm:flex">
+      <div class="mt-4 sm:mt-0 sm:mr-5">
+        <it-switch
+          v-model="thisMonthOnly"
+          label="Chỉ trong tháng hiện tại"
+        />
+      </div>
+      <div class="mt-3 sm:mt-0">
+        <it-switch
+          v-model="onlyFavorite"
+          label="Chỉ những loại yêu thích"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +31,7 @@ export default defineComponent({
   name: 'Filter',
   data() {
     return {
-      calendarStyle: 'calendar',
+      calendarStyle: 'Dương lịch',
       thisMonthOnly: false,
       onlyFavorite: false,
     };
