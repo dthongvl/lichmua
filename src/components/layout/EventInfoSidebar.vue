@@ -68,7 +68,7 @@ export default defineComponent({
   .sidebar-container {
     width: 30vw;
     height: calc(100vh - 160px);
-    transform: translateY(80px);
+    transform: translateX(-30vw) translateY(80px);
   }
 }
 

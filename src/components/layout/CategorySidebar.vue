@@ -3,7 +3,7 @@
     class="category-sidebar"
   >
     <div
-      class="bg-white border-1 rounded-r-md sidebar-container opacity-0 hover:opacity-100 hover:shadow-md"
+      class="bg-white border-1 rounded-r-md sidebar-container hover:shadow-md"
     >
       <div
         v-for="event in events"
@@ -38,12 +38,14 @@ export default defineComponent({
     width: 300px;
     height: calc(-120px + 100vh);
     transition: transform 0.5s, opacity 0.3s;
-    transform: translateX(-280px) translateY(60px) translateZ(0px);
+    opacity: 0;
+    transform: translateX(-280px) translateZ(0px);
   }
 
   &:hover {
     .sidebar-container {
-      transform: translateX(0px) translateY(60px) translateZ(0px);
+      opacity: 1;
+      transform: translateX(0px) translateZ(0px);
     }
   }
 }

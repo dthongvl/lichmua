@@ -2,18 +2,18 @@
   <div class="flex w-screen h-screen relative">
     <CategorySidebar
       :events="events"
-      class="absolute inset-y-0 left-0 z-10 w-3"
+      class="absolute top-14 bottom-0 left-0 z-10 w-3"
     />
     <EventInfoSidebar
       :collapsed="eventInfoCollapsed"
-      class="absolute inset-y-0 right-0 z-10"
+      class="absolute inset-y-0 right-0 z-10 w-0"
     />
     <div
       class="w-full h-full flex flex-col"
     >
       <Header
         :events="events"
-        class="mb-6 shadow px-5 py-5"
+        class="mb-6 shadow pr-5"
       />
       <Filter class="mb-6 mx-5" />
       <Calendar

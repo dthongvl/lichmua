@@ -1,6 +1,7 @@
 <template>
   <div class="sm:flex justify-between items-center">
     <div>
+      <MenuUnfoldOutlined class="text-lg w-6 h-6 m-4 cursor-pointer" />
       <img
         src="https://vuejs.org/images/logo.png"
         class="w-10 h-10 inline mr-2"
@@ -35,11 +36,13 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { mapMutations } from 'vuex';
+import { MenuUnfoldOutlined } from '@ant-design/icons-vue';
 import Event from '../../types/event';
 
 export default defineComponent({
   name: 'Header',
   components: {
+    MenuUnfoldOutlined,
   },
   props: {
     events: {
