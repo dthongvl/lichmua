@@ -11,7 +11,10 @@
     <div
       class="w-full h-full flex flex-col"
     >
-      <Header class="mb-6 shadow px-5 py-5" />
+      <Header
+        :events="events"
+        class="mb-6 shadow px-5 py-5"
+      />
       <Filter class="mb-6 mx-5" />
       <Calendar
         :events="events"
@@ -51,7 +54,11 @@ export default defineComponent({
   methods: {
     ...mapMutations(['setEventInfoCollapsed']),
     handleClickOutside(event): void {
-      if (event.target.closest('.row-segment') || event.target.closest('.event-info-sidebar')) return;
+      if (event.target.closest('.row-segment')
+          || event.target.closest('.event-info-sidebar')
+          || event.target.closest('.search-option')) {
+        return;
+      }
       this.setEventInfoCollapsed(true);
     },
   },

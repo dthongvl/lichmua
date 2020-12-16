@@ -67,7 +67,8 @@ export default defineComponent({
 .event-info-sidebar {
   .sidebar-container {
     width: 30vw;
-    height: 100vh;
+    height: calc(100vh - 160px);
+    transform: translateY(80px);
   }
 }
 

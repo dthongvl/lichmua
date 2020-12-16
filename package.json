@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ant-design-vue": "^2.0.0-rc.5",
     "core-js": "^3.6.5",
     "dayjs": "^1.9.6",
     "equal-vue": "^0.7.19",
