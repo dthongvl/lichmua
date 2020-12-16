@@ -29,8 +29,6 @@ import Filter from '../components/layout/Filter.vue';
 import Header from '../components/layout/Header.vue';
 import CategorySidebar from '../components/layout/CategorySidebar.vue';
 import EventInfoSidebar from '../components/layout/EventInfoSidebar.vue';
-import loadEvents from '../services/loadEvents';
-import eventsData from '../data/eventsData.json';
 
 export default defineComponent({
   name: 'Home',
@@ -41,11 +39,6 @@ export default defineComponent({
     CategorySidebar,
     EventInfoSidebar,
   },
-  data() {
-    return {
-      events: loadEvents(eventsData),
-    };
-  },
   beforeMount() {
     document.addEventListener('click', this.handleClickOutside);
   },
@@ -53,7 +46,7 @@ export default defineComponent({
     document.removeEventListener('click', this.handleClickOutside);
   },
   computed: {
-    ...mapState(['eventInfoCollapsed']),
+    ...mapState(['eventInfoCollapsed', 'events']),
   },
   methods: {
     ...mapMutations(['setEventInfoCollapsed']),
