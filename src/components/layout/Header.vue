@@ -7,7 +7,7 @@
       />
       <span>Lich mua</span>
     </div>
-    <div class="w-75">
+    <div class="sm:w-96">
       <it-input
         v-model="searchQuery"
         placeholder="Cam, Quyt,.."

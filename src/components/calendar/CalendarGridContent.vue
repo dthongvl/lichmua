@@ -6,6 +6,7 @@
       :level="level"
       :index="index"
       class="mb-2"
+      :class="{ 'mt-2': index === 0 }"
     />
   </div>
 </template>
@@ -15,7 +16,7 @@ import {
   defineComponent,
   PropType,
 } from 'vue';
-import Segment from '../types/segment';
+import Segment from '../../types/segment';
 import CalendarRow from './CalendarRow.vue';
 
 export default defineComponent({

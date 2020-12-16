@@ -7,7 +7,7 @@
       <CalendarGridBackground class="h-full" />
       <CalendarGridContent
         :levels="levels"
-        class="absolute inset-0 top-2 overflow-y-scroll overflow-x-hidden"
+        class="absolute inset-0 overflow-y-scroll overflow-x-hidden"
       />
     </div>
   </div>

@@ -6,20 +6,21 @@
     >
       <div
         v-if="currentEvent"
-        class="sidebar-container bg-white border-1 rounded-r-md sidebar-container shadow-md"
+        class="p-5 sidebar-container bg-white border-1 rounded-r-md sidebar-container shadow-md"
       >
-        <div>
-          Name: {{ currentEvent.content }}
+        <div class="flex items-center h-8">
+          <span class="w-32 text-left">Tên</span>
+          <span class="flex-1 text-xl text-left">{{ currentEvent.content }}</span>
         </div>
         <template
           v-for="(season, index) in formattedSeasons"
           :key="index"
         >
-          <div>
-            Ngày bắt đầu: {{ season.startDate }}
-          </div>
-          <div>
-            Ngày kết thúc: {{ season.endDate }}
+          <div class="flex items-center h-8">
+            <span class="w-32 text-left">
+              Mùa {{ index + 1 }}
+            </span>
+            <span class="flex-1 text-xl text-left">{{ season.startDate }} -> {{ season.endDate }}</span>
           </div>
         </template>
       </div>
