@@ -1,7 +1,7 @@
 <template>
   <div class="flex w-screen h-screen relative">
     <CategorySidebar
-      :events="events"
+      :events="filteredEvents"
       class="absolute top-14 bottom-0 left-0 z-10 w-3"
     />
     <EventInfoSidebar
@@ -12,12 +12,12 @@
       class="w-full h-full flex flex-col"
     >
       <Header
-        :events="events"
+        :events="filteredEvents"
         class="mb-6 shadow sm:pr-5 pb-5 sm:pb-0"
       />
       <Filter class="mb-6 mx-5" />
       <Calendar
-        :events="events"
+        :events="filteredEvents"
         class="flex-1 overflow-x-scroll flex-wrap"
       />
     </div>
@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import Calendar from '../components/calendar/Calendar.vue';
 import Filter from '../components/layout/Filter.vue';
 import Header from '../components/layout/Header.vue';
@@ -49,7 +49,8 @@ export default defineComponent({
     document.removeEventListener('click', this.handleClickOutside);
   },
   computed: {
-    ...mapState(['eventInfoCollapsed', 'events']),
+    ...mapGetters(['filteredEvents']),
+    ...mapState(['eventInfoCollapsed']),
   },
   methods: {
     ...mapMutations(['setEventInfoCollapsed']),
