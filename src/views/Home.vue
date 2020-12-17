@@ -13,12 +13,12 @@
     >
       <Header
         :events="events"
-        class="mb-6 shadow pr-5"
+        class="mb-6 shadow sm:pr-5 pb-5 sm:pb-0"
       />
       <Filter class="mb-6 mx-5" />
       <Calendar
         :events="events"
-        class="flex-1"
+        class="flex-1 overflow-x-scroll flex-wrap"
       />
     </div>
   </div>

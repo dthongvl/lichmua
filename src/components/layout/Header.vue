@@ -14,7 +14,7 @@
       :filter-option="false"
       :not-found-content="searching ? undefined : null"
       :show-arrow="false"
-      class="w-72"
+      class="w-4/5 sm:w-1/5 text-left"
       show-search
       @search="onSearch"
       @change="onSelect"
@@ -64,6 +64,10 @@ export default defineComponent({
       this.setEventInfoCollapsed(false);
     },
     onSearch(value: string): void {
+      if (!value.length) {
+        this.searchResults = [];
+        return;
+      }
       this.searching = true;
       const toSearch = value.toLowerCase();
       this.searchResults = this.events.filter((event) => event.content.toLowerCase().includes(toSearch));

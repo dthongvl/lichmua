@@ -6,21 +6,34 @@
     >
       <div
         v-if="currentEvent"
-        class="p-5 sidebar-container bg-white border-1 rounded-r-md sidebar-container shadow-md"
+        class="p-5 sidebar-container bg-white border-1 rounded-r-md sidebar-container shadow-lg w-screen sm:w-96"
       >
+        <CloseOutlined
+          class="block text-right cursor-pointer"
+          @click="hideEventInfoSidebar"
+        />
         <div class="flex items-center h-8">
-          <span class="w-32 text-left">Tên</span>
+          <span class="w-32 text-left text-lg">Tên</span>
           <span class="flex-1 text-xl text-left">{{ currentEvent.content }}</span>
         </div>
         <template
           v-for="(season, index) in formattedSeasons"
           :key="index"
         >
+          <div class="text-left mt-2 text-lg">
+            Mùa {{ index + 1 }}
+          </div>
           <div class="flex items-center h-8">
-            <span class="w-32 text-left">
-              Mùa {{ index + 1 }}
-            </span>
-            <span class="flex-1 text-xl text-left">{{ season.startDate }} -> {{ season.endDate }}</span>
+            <div class="w-32 text-left">
+              Ngày bắt đầu
+            </div>
+            <span class="flex-1 text-xl text-left">{{ season.startDate }}</span>
+          </div>
+          <div class="flex items-center h-8">
+            <div class="w-32 text-left">
+              Ngày kết thúc
+            </div>
+            <span class="flex-1 text-xl text-left">{{ season.endDate }}</span>
           </div>
         </template>
       </div>
@@ -29,12 +42,16 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import dayjs from 'dayjs';
+import { CloseOutlined } from '@ant-design/icons-vue';
 import Range from '../../types/range';
 
 export default defineComponent({
   name: 'EventInfoSidebar',
+  components: {
+    CloseOutlined,
+  },
   props: {
     collapsed: {
       type: Boolean,
@@ -60,15 +77,20 @@ export default defineComponent({
       return formatted;
     },
   },
+  methods: {
+    ...mapMutations(['setEventInfoCollapsed']),
+    hideEventInfoSidebar(): void {
+      this.setEventInfoCollapsed(true);
+    },
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .event-info-sidebar {
   .sidebar-container {
-    width: 30vw;
-    height: calc(100vh - 160px);
-    transform: translateX(-30vw) translateY(80px);
+    height: calc(100vh - 200px);
+    transform: translateX(-100%) translateY(100px);
   }
 }
 
