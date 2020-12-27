@@ -4,7 +4,6 @@
       v-for="(level, index) in levels"
       :key="index"
       :level="level"
-      :index="index"
       class="mb-2"
       :class="{ 'mt-2': index === 0 }"
     />

@@ -2,29 +2,31 @@ import { createStore } from 'vuex';
 import { forEach } from 'lodash';
 import getFilter from '../services/getFilter';
 import loadEvents from '../services/loadEvents';
-import eventsData from '../data/eventsData.json';
+import loadFavorites from '../services/loadFavorites';
+import Event from '../types/event';
+import eventsData from '../data/eventsData';
 
 export default createStore({
   state: {
     events: loadEvents(eventsData),
+    favorites: loadFavorites(window.localStorage),
     currentEvent: null,
     eventInfoCollapsed: true,
     filters: {},
   },
   getters: {
-    filteredEvents(state) {
+    filteredEvents: (state) => {
       let filtered = state.events;
 
-      console.log(state.filters);
       forEach(state.filters, (options, filterName) => {
-        console.log('before', filtered);
         const filter = getFilter(filterName);
-        console.log('Start ', filterName, options);
         filtered = filter(filtered, options);
-        console.log('after', filtered);
       });
 
       return filtered;
+    },
+    getEventFavoriteState: (state) => (event: Event) => {
+      return state.favorites[event.id];
     },
   },
   mutations: {
@@ -39,6 +41,11 @@ export default createStore({
     },
     removeFilter(state, filterName) {
       delete state.filters[filterName];
+    },
+    setEventFavoriteState(state, payload) {
+      state.favorites[payload.event.id] = payload.state;
+      // TODO: refactor later
+      window.localStorage.setItem('favorite-events', JSON.stringify(state.favorites));
     },
   },
   actions: {

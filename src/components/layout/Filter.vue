@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapMutations } from 'vuex';
-import { MONTH_FILTER } from '../../constants';
+import { mapMutations, mapState } from 'vuex';
+import { MONTH_FILTER, FAVORITE_FILTER } from '../../constants';
 
 export default defineComponent({
   name: 'Filter',
@@ -41,6 +41,9 @@ export default defineComponent({
       thisMonthOnly: false,
       onlyFavorite: false,
     };
+  },
+  computed: {
+    ...mapState(['favorites']),
   },
   methods: {
     ...mapMutations(['addFilter', 'removeFilter']),
@@ -57,7 +60,16 @@ export default defineComponent({
       }
     },
     toggleOnlyFavorite(checked: boolean): void {
-
+      if (checked) {
+        this.addFilter({
+          filterName: FAVORITE_FILTER,
+          options: {
+            favorites: this.favorites,
+          },
+        });
+      } else {
+        this.removeFilter(FAVORITE_FILTER);
+      }
     },
   }
 });

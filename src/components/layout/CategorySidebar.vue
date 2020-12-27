@@ -7,7 +7,7 @@
     >
       <div
         v-for="event in events"
-        :key="event.content"
+        :key="event.id"
       >
         {{ event.content }}
       </div>

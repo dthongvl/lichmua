@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType, ref, toRefs, watch, onMounted } from 'vue';
 import Segment from '../../types/segment';
 import RowSegment from './RowSegment.vue';
 import getRandomColor from '../../services/getRandomColor';
@@ -23,10 +23,6 @@ export default defineComponent({
     RowSegment,
   },
   props: {
-    index: {
-      type: Number,
-      required: true,
-    },
     level: {
       type: Array as PropType<Segment[]>,
       required: true,
@@ -34,25 +30,35 @@ export default defineComponent({
   },
   setup(props) {
     const normalizedSegments = ref<Array<Segment>>([]);
+    const { level } = toRefs(props);
 
-    const randomColor = getRandomColor();
-    let lastEnd = 0;
+    const normalizeSegments = (): void => {
+      // TODO: fix random color when changing filter
+      const randomColor = getRandomColor();
+      const result: Array<Segment> = [];
+      let lastEnd = 0;
 
-    props.level.forEach((segment) => {
-      const gap = segment.startIndex - lastEnd;
+      props.level.forEach((segment) => {
+        const gap = segment.startIndex - lastEnd;
 
-      if (gap) {
-        normalizedSegments.value.push({
-          startIndex: lastEnd,
-          span: gap,
-          color: 'transparent',
-        });
-      }
+        if (gap) {
+          result.push({
+            startIndex: lastEnd,
+            span: gap,
+            color: 'transparent',
+          });
+        }
 
-      normalizedSegments.value.push({ ...segment, color: randomColor });
+        result.push({ ...segment, color: randomColor });
 
-      lastEnd = segment.startIndex + segment.span;
-    });
+        lastEnd = segment.startIndex + segment.span;
+      });
+
+      normalizedSegments.value = result;
+    };
+
+    onMounted(normalizeSegments);
+    watch(level, normalizeSegments);
 
     return {
       normalizedSegments,
