@@ -35,7 +35,7 @@
           </div>
           <div
             v-if="getEventFavoriteState(event)"
-            class="text-yellow-500"
+            class="text-yellow-500 flex"
           >
             <StarFilled
               class="text-lg"
