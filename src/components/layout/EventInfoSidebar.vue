@@ -8,13 +8,27 @@
         v-if="currentEvent"
         class="p-5 sidebar-container bg-white border-1 rounded-r-md sidebar-container shadow-lg w-screen sm:w-96"
       >
-        <CloseOutlined
-          class="block text-right cursor-pointer"
-          @click="hideEventInfoSidebar"
-        />
+        <div
+          class="text-right"
+        >
+          <CloseOutlined
+            class="cursor-pointer"
+            @click="hideEventInfoSidebar"
+          />
+        </div>
         <div class="flex items-center h-8">
           <span class="w-32 text-left text-lg">Tên</span>
-          <span class="flex-1 text-xl text-left">{{ currentEvent.content }}</span>
+          <span class="flex-1 text-xl text-left flex items-center">
+            <span
+              v-if="getEventFavoriteState(currentEvent)"
+              class="text-yellow-500 mr-1 flex"
+            >
+              <StarFilled
+                class="text-lg"
+              />
+            </span>
+            <span>{{ currentEvent.content }}</span>
+          </span>
         </div>
         <template
           v-for="(season, index) in formattedSeasons"
@@ -42,15 +56,16 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import dayjs from 'dayjs';
-import { CloseOutlined } from '@ant-design/icons-vue';
+import { CloseOutlined, StarFilled } from '@ant-design/icons-vue';
 import Range from '../../types/range';
 
 export default defineComponent({
   name: 'EventInfoSidebar',
   components: {
     CloseOutlined,
+    StarFilled,
   },
   props: {
     collapsed: {
@@ -63,6 +78,7 @@ export default defineComponent({
     };
   },
   computed: {
+    ...mapGetters(['getEventFavoriteState']),
     ...mapState(['currentEvent']),
     formattedSeasons(): Array<any> {
       const formatted: Array<any> = [];

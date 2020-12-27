@@ -27,7 +27,21 @@
         :key="index"
         class="search-option"
       >
-        {{ event.content }}
+        <div
+          class="flex justify-between items-center"
+        >
+          <div>
+            {{ event.content }}
+          </div>
+          <div
+            v-if="getEventFavoriteState(event)"
+            class="text-yellow-500"
+          >
+            <StarFilled
+              class="text-lg"
+            />
+          </div>
+        </div>
       </a-select-option>
     </a-select>
   </div>
@@ -35,14 +49,15 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { mapMutations } from 'vuex';
-import { MenuUnfoldOutlined } from '@ant-design/icons-vue';
+import { mapMutations, mapGetters } from 'vuex';
+import { MenuUnfoldOutlined, StarFilled } from '@ant-design/icons-vue';
 import Event from '../../types/event';
 
 export default defineComponent({
   name: 'Header',
   components: {
     MenuUnfoldOutlined,
+    StarFilled,
   },
   props: {
     events: {
@@ -56,6 +71,9 @@ export default defineComponent({
       searchResults: [],
       searching: false,
     };
+  },
+  computed: {
+    ...mapGetters(['getEventFavoriteState']),
   },
   methods: {
     ...mapMutations(['setCurrentEvent', 'setEventInfoCollapsed']),

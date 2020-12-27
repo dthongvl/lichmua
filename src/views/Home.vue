@@ -12,7 +12,7 @@
       class="w-full h-full flex flex-col"
     >
       <Header
-        :events="filteredEvents"
+        :events="events"
         class="mb-6 shadow sm:pr-5 pb-5 sm:pb-0"
       />
       <Filter class="mb-6 mx-5" />
@@ -50,7 +50,7 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(['filteredEvents']),
-    ...mapState(['eventInfoCollapsed']),
+    ...mapState(['events', 'eventInfoCollapsed']),
   },
   methods: {
     ...mapMutations(['setEventInfoCollapsed']),
