@@ -45,7 +45,7 @@
     "sass-loader": "^8.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "typescript": "~3.9.3",
-    "vite": "^1.0.0-rc.13",
+    "vite": "^2.9.13",
     "vue-jest": "^5.0.0-0"
   }
 }
